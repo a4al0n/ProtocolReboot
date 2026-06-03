@@ -70,4 +70,15 @@ public class Launcher : MonoBehaviourPunCallbacks
 
         PhotonNetwork.Instantiate(playerPrefabName, spawnPos, Quaternion.identity);
     }
+
+    public override void OnDisconnected(DisconnectCause cause)
+    {
+        Debug.LogWarning("Launcher: Disconnected — " + cause);
+
+        // Не переподключаемся если это намеренный выход
+        if (cause == DisconnectCause.DisconnectByClientLogic) return;
+
+        Debug.Log("Launcher: Reconnecting...");
+        PhotonNetwork.ConnectUsingSettings();
+    }
 }
