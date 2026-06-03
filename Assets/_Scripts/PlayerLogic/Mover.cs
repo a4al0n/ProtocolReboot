@@ -1,0 +1,47 @@
+﻿using UnityEngine;
+
+public abstract class Mover : Fighter
+{
+    protected BoxCollider2D BoxCollider;
+    protected Vector3 moveDelta;
+    protected RaycastHit2D hit;
+    protected Animator anim;
+
+    protected float ySpeed = 0.75f;
+    protected float xSpeed = 1.0f;
+    private Vector3 originalSize;
+
+    protected virtual void Start()
+    {
+        BoxCollider = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
+        originalSize = transform.localScale;
+    }
+
+    protected virtual void UpdateMotor(Vector3 input, float SPMultiple)
+    {
+        moveDelta = new Vector3(input.x * xSpeed * SPMultiple, input.y * ySpeed * SPMultiple, 0);
+
+        // Передаем в аниматор: идем мы (true) или стоим (false)
+        if (anim != null)
+        {
+            anim.SetBool("isRunning", input.magnitude > 0);
+        }
+
+        // Поворот персонажа влево/вправо
+        if (moveDelta.x > 0)
+            transform.localScale = originalSize;
+        else if (moveDelta.x < 0)
+            transform.localScale = new Vector3(originalSize.x * -1, originalSize.y, originalSize.z);
+
+        moveDelta += pushDirection;
+        pushDirection = Vector3.Lerp(pushDirection, Vector3.zero, pushRecoverySpeed);
+
+        // Столкновения
+        hit = Physics2D.BoxCast(transform.position, BoxCollider.size, 0, new Vector2(0, moveDelta.y), Mathf.Abs(moveDelta.y * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
+        if (hit.collider == null) transform.Translate(0, moveDelta.y * Time.deltaTime, 0);
+
+        hit = Physics2D.BoxCast(transform.position, BoxCollider.size, 0, new Vector2(moveDelta.x, 0), Mathf.Abs(moveDelta.x * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
+        if (hit.collider == null) transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
+    }
+}
