@@ -18,7 +18,6 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        // Если уже в комнате (перешли через портал) — просто спавним игрока
         if (PhotonNetwork.InRoom)
         {
             Debug.Log("Launcher: Already in room, spawning player...");
@@ -26,7 +25,6 @@ public class Launcher : MonoBehaviourPunCallbacks
             return;
         }
 
-        // Первый запуск — подключаемся
         if (!PhotonNetwork.IsConnected)
         {
             Debug.Log("Launcher: Connecting to Photon...");
@@ -34,7 +32,6 @@ public class Launcher : MonoBehaviourPunCallbacks
         }
         else
         {
-            // Подключены но не в комнате — заходим в лобби
             Debug.Log("Launcher: Already connected, joining lobby...");
             PhotonNetwork.JoinLobby();
         }
@@ -60,24 +57,44 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     private void SpawnPlayer()
     {
-        // Ищем SpawnPoint в сцене
-        Vector3 spawnPos = Vector3.zero;
+        // Проверяем — есть ли уже локальный игрок в сцене
+        foreach (var player in FindObjectsOfType<Player>())
+        {
+            PhotonView pv = player.GetComponent<PhotonView>();
+            if (pv != null && pv.IsMine)
+            {
+                Debug.Log("Launcher: Local player already exists, moving to SpawnPoint...");
+                MovePlayerToSpawn(player.gameObject);
+                return;
+            }
+        }
+
+        // Игрока нет — создаём
+        Vector3 spawnPos = GetSpawnPosition();
+        Debug.Log("Launcher: Instantiating player at " + spawnPos);
+        PhotonNetwork.Instantiate(playerPrefabName, spawnPos, Quaternion.identity);
+    }
+
+    private void MovePlayerToSpawn(GameObject player)
+    {
+        Vector3 spawnPos = GetSpawnPosition();
+        player.transform.position = spawnPos;
+    }
+
+    private Vector3 GetSpawnPosition()
+    {
         GameObject spawnPoint = GameObject.FindWithTag(spawnPointTag);
         if (spawnPoint != null)
-            spawnPos = spawnPoint.transform.position;
-        else
-            Debug.LogWarning("Launcher: SpawnPoint not found, spawning at Vector3.zero");
+            return spawnPoint.transform.position;
 
-        PhotonNetwork.Instantiate(playerPrefabName, spawnPos, Quaternion.identity);
+        Debug.LogWarning("Launcher: SpawnPoint not found, using Vector3.zero");
+        return Vector3.zero;
     }
 
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.LogWarning("Launcher: Disconnected — " + cause);
-
-        // Не переподключаемся если это намеренный выход
         if (cause == DisconnectCause.DisconnectByClientLogic) return;
-
         Debug.Log("Launcher: Reconnecting...");
         PhotonNetwork.ConnectUsingSettings();
     }
