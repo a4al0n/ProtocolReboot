@@ -56,13 +56,15 @@ public class Weapon : Colliderable
     {
         InitializePlayerComponents();
 
+        // base.Update() вызываем ВСЕГДА — коллизии должны работать независимо
+        base.Update();
+
+        // Дальше только логика оружия — только для локального живого игрока
         if (GameManager.instance == null || player == null || !player.isAlive)
             return;
 
         if (playerView != null && !playerView.IsMine)
             return;
-
-        base.Update();
 
         if (Input.GetKeyDown(KeyCode.Mouse0) || Input.GetKeyDown(KeyCode.Space))
         {
