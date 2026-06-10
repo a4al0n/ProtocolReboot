@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using Photon.Pun;
 
-public class EnemyHitBox : Collectable
+public class EnemyHitBox : Colliderable
 {
     [Header("------ Settings ------")]
     public int damage;
@@ -11,22 +9,26 @@ public class EnemyHitBox : Collectable
 
     protected override void OnCollide(Collider2D coll)
     {
-        // Rule 4: CompareTag instead of name check
-        if (coll.CompareTag("Player"))
-        {
-            PhotonView pv = coll.GetComponent<PhotonView>();
-            // Rule 2 & 4: Only apply damage to the player if it is the local player (IsMine)
-            if (pv != null && pv.IsMine)
-            {
-                Damag dmg = new Damag
-                {
-                    damageAmount = damage,
-                    origin = transform.position,
-                    pushForce = pushForce
-                };
+        // Ищем Player по компоненту вместо тега
+        Player playerComponent = coll.GetComponent<Player>();
+        if (playerComponent == null)
+            playerComponent = coll.GetComponentInParent<Player>();
+        if (playerComponent == null) return;
 
-                coll.SendMessage("ReceiveDamage", dmg);
-            }
-        }
+        PhotonView pv = coll.GetComponent<PhotonView>();
+        if (pv == null) pv = coll.GetComponentInParent<PhotonView>();
+
+        // Только локальный игрок получает урон
+        bool isLocalPlayer = (pv != null && pv.IsMine) || !PhotonNetwork.IsConnected;
+        if (!isLocalPlayer) return;
+
+        Damag dmg = new Damag
+        {
+            damageAmount = damage,
+            origin = transform.position,
+            pushForce = pushForce
+        };
+
+        playerComponent.SendMessage("ReceiveDamage", dmg);
     }
 }

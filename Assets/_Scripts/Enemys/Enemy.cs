@@ -5,23 +5,23 @@ using Photon.Pun;
 
 public class Enemy : Mover
 {
-    private bool isAlive = true;            
+    private bool isAlive = true;
     [Header("------ Settings ------")]
-    public bool canRespawn = true;          
-    public float timeToRespawn = 10f;       
+    public bool canRespawn = true;
+    public float timeToRespawn = 10f;
 
     [Header("------ XP Value ------")]
-    public int xpValue = 1;     
+    public int xpValue = 1;
 
     [Header("------ Chasing ------")]
-    public float speedMultiple = 0.75f;     
-    public float triggerLength = 1.0f;      
-    public float chaseLength = 1.0f;        
-    public bool chasing;                    
-    public bool collidingWithPlayer;        
+    public float speedMultiple = 0.75f;
+    public float triggerLength = 1.0f;
+    public float chaseLength = 1.0f;
+    public bool chasing;
+    public bool collidingWithPlayer;
 
-    private Transform playTransform;        
-    private Vector3 startingPosition;      
+    private Transform playTransform;
+    private Vector3 startingPosition;
 
     [Header("------ State Sprites ------")]
     public SpriteRenderer enemyStateSprite;
@@ -31,7 +31,7 @@ public class Enemy : Mover
     private BoxCollider2D hitBox;
     private Collider2D[] hits = new Collider2D[10];
 
-    public bool drawTriggerLength;          
+    public bool drawTriggerLength;
 
     protected override void Start()
     {
@@ -39,18 +39,19 @@ public class Enemy : Mover
         startingPosition = transform.position;
 
         if (transform.childCount > 0)
-        {
             hitBox = transform.GetChild(0).GetComponent<BoxCollider2D>();
-        }
+
         CloseStateSprite();
     }
 
     protected Transform FindClosestPlayer()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        // Ищем по компоненту Player вместо тега
+        Player[] playerComponents = FindObjectsOfType<Player>();
         Transform closest = null;
         float minDistance = float.MaxValue;
-        foreach (GameObject p in players)
+
+        foreach (Player p in playerComponents)
         {
             float dist = Vector3.Distance(p.transform.position, transform.position);
             if (dist < minDistance)
@@ -79,11 +80,11 @@ public class Enemy : Mover
             hitBox.Overlap(filter, hits);
             for (int i = 0; i < hits.Length; i++)
             {
-                if (hits[i] == null)
-                    continue;
+                if (hits[i] == null) continue;
 
-                // Rule 4: CompareTag instead of name check
-                if (hits[i].CompareTag("Player"))
+                // Ищем Player по компоненту вместо тега
+                if (hits[i].GetComponent<Player>() != null ||
+                    hits[i].GetComponentInParent<Player>() != null)
                 {
                     collidingWithPlayer = true;
                 }
@@ -94,7 +95,6 @@ public class Enemy : Mover
 
     private void FixedUpdate()
     {
-        // Rule 4: AI movement updates are run only on the Master Client in multiplayer
         if (PhotonNetwork.IsConnected && PhotonNetwork.InRoom && !PhotonNetwork.IsMasterClient)
             return;
 
@@ -106,11 +106,8 @@ public class Enemy : Mover
 
     protected virtual void ChasingTarget()
     {
-        // Always find closest player each frame (works in both single and multiplayer)
-        // In multiplayer, FindGameObjectsWithTag finds all networked player objects
         playTransform = FindClosestPlayer();
 
-        // Fallback to GameManager.instance.player in offline/single-player mode
         if (playTransform == null && !PhotonNetwork.IsConnected)
         {
             if (GameManager.instance != null && GameManager.instance.player != null)
@@ -125,9 +122,6 @@ public class Enemy : Mover
             return;
         }
 
-        // In multiplayer, isAlive is NOT synced over the network — so we skip the check
-        // to avoid the enemy ignoring a perfectly alive remote player.
-        // In offline/single-player we CAN safely read the local isAlive flag.
         bool isTargetAlive = true;
         if (!PhotonNetwork.IsConnected || !PhotonNetwork.InRoom)
         {
@@ -143,11 +137,8 @@ public class Enemy : Mover
             if (chasing)
             {
                 OpenStateSprite();
-
                 if (!collidingWithPlayer)
-                {
                     UpdateMotor((playTransform.position - transform.position).normalized, speedMultiple);
-                }
             }
             else
             {
@@ -168,7 +159,7 @@ public class Enemy : Mover
         if (enemyStateSprite == null || stateSprites == null || stateSprites.Count < 2) return;
 
         enemyStateSprite.enabled = true;
-        if ((float)hitPoint / (float)maxHitPoint < 0.5)
+        if ((float)hitPoint / (float)maxHitPoint < 0.5f)
             enemyStateSprite.sprite = stateSprites[1];
         else
             enemyStateSprite.sprite = stateSprites[0];
@@ -194,7 +185,6 @@ public class Enemy : Mover
 
     protected override void Death()
     {
-        // Only grant XP on Master Client (or offline) to prevent duplication
         if (!PhotonNetwork.IsConnected || !PhotonNetwork.InRoom || PhotonNetwork.IsMasterClient)
         {
             if (GameManager.instance != null)
@@ -209,25 +199,22 @@ public class Enemy : Mover
             isAlive = false;
             if (hitBox != null) hitBox.enabled = false;
             CloseStateSprite();
-            
+
             var col = GetComponent<BoxCollider2D>();
             if (col != null) col.enabled = false;
-            
+
             var sr = GetComponent<SpriteRenderer>();
             if (sr != null) sr.enabled = false;
-            
+
             StartCoroutine("WaitingForRespawn");
         }
         else
         {
-            // Destroy network-instantiated objects through PhotonNetwork
             PhotonView myView = GetComponent<PhotonView>();
             if (myView != null && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
             {
                 if (PhotonNetwork.IsMasterClient)
-                {
                     PhotonNetwork.Destroy(gameObject);
-                }
             }
             else
             {
@@ -241,10 +228,10 @@ public class Enemy : Mover
         yield return new WaitForSeconds(timeToRespawn);
         isAlive = true;
         if (hitBox != null) hitBox.enabled = true;
-        
+
         var col = GetComponent<BoxCollider2D>();
         if (col != null) col.enabled = true;
-        
+
         var sr = GetComponent<SpriteRenderer>();
         if (sr != null) sr.enabled = true;
 
