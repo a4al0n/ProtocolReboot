@@ -9,22 +9,19 @@ public class RoadDisplayControl : MonoBehaviourPun
 
     private void Start()
     {
-        // Initially, the path is closed
         if (trans != null)
             trans.gameObject.SetActive(false);
     }
 
     private void Update()
     {
-        // Rule 2: Defensive checks
-        if (enemys == null || trans == null) return;
+        // Проверяем через оператор Unity — он отловит уничтоженные объекты
+        if (enemys == null || !enemys || trans == null || !trans) return;
 
-        // Rule 4: Host (MasterClient) validates victory condition
         if (PhotonNetwork.IsMasterClient)
         {
             num = enemys.transform.childCount;
 
-            // If no enemies remain, open the path on all clients
             if (num == 0 && !trans.activeSelf)
             {
                 photonView.RPC("DisplayRoadRPC", RpcTarget.AllBuffered);
@@ -35,7 +32,7 @@ public class RoadDisplayControl : MonoBehaviourPun
     [PunRPC]
     public void DisplayRoadRPC()
     {
-        if (trans != null)
+        if (trans != null && trans)
         {
             trans.gameObject.SetActive(true);
             Debug.Log("RoadDisplayControl: All enemies defeated. Road opened!");
