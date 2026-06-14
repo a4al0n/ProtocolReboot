@@ -72507,8 +72507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 20
-  maxHitPoint: 20
+  hitPoint: 5
+  maxHitPoint: 5
   pushRecoverySpeed: 0.2
   canRespawn: 0
   timeToRespawn: 100
@@ -72903,8 +72903,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 20
-  maxHitPoint: 20
+  hitPoint: 5
+  maxHitPoint: 5
   pushRecoverySpeed: 0.2
   canRespawn: 0
   timeToRespawn: 100
@@ -73059,8 +73059,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 20
-  maxHitPoint: 20
+  hitPoint: 5
+  maxHitPoint: 5
   pushRecoverySpeed: 0.2
   canRespawn: 0
   timeToRespawn: 100
@@ -73335,8 +73335,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 20
-  maxHitPoint: 20
+  hitPoint: 5
+  maxHitPoint: 5
   pushRecoverySpeed: 0.2
   canRespawn: 0
   timeToRespawn: 100
@@ -73592,8 +73592,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 12
-  maxHitPoint: 12
+  hitPoint: 5
+  maxHitPoint: 5
   pushRecoverySpeed: 0.2
   canRespawn: 0
   timeToRespawn: 100
@@ -73916,8 +73916,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 12
-  maxHitPoint: 12
+  hitPoint: 5
+  maxHitPoint: 5
   pushRecoverySpeed: 0.2
   canRespawn: 0
   timeToRespawn: 100
@@ -74964,8 +74964,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b36a027e6af1dc24e818c9d940e69efb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 150
-  maxHitPoint: 150
+  hitPoint: 20
+  maxHitPoint: 20
   pushRecoverySpeed: 0.5
   canRespawn: 0
   timeToRespawn: 0
@@ -75309,8 +75309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 20
-  maxHitPoint: 20
+  hitPoint: 5
+  maxHitPoint: 5
   pushRecoverySpeed: 0.5
   canRespawn: 0
   timeToRespawn: 100
@@ -75478,8 +75478,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 20
-  maxHitPoint: 20
+  hitPoint: 5
+  maxHitPoint: 5
   pushRecoverySpeed: 0.5
   canRespawn: 0
   timeToRespawn: 100
@@ -75785,8 +75785,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 40
-  maxHitPoint: 40
+  hitPoint: 10
+  maxHitPoint: 10
   pushRecoverySpeed: 0.5
   canRespawn: 0
   timeToRespawn: 100
@@ -76142,8 +76142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 20
-  maxHitPoint: 20
+  hitPoint: 5
+  maxHitPoint: 5
   pushRecoverySpeed: 0.2
   canRespawn: 0
   timeToRespawn: 100
@@ -76289,8 +76289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 20
-  maxHitPoint: 20
+  hitPoint: 5
+  maxHitPoint: 5
   pushRecoverySpeed: 0.2
   canRespawn: 0
   timeToRespawn: 100
@@ -76706,8 +76706,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 385937308750bed4f8bc9a51162fc148, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 30
-  maxHitPoint: 30
+  hitPoint: 10
+  maxHitPoint: 10
   pushRecoverySpeed: 0.2
   canRespawn: 0
   timeToRespawn: 100

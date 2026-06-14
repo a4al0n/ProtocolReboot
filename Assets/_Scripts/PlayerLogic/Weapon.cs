@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿// Weapon.cs
+using System.Collections;
 using UnityEngine;
 using Photon.Pun;
 
@@ -27,6 +28,9 @@ public class Weapon : Colliderable
     private Player player;
     private PhotonView playerView;
 
+    // Оружие наносит урон только во время свинга
+    private bool _isSwinging = false;
+
     private void Awake()
     {
         SpriteRenderer = GetComponent<SpriteRenderer>();
@@ -38,7 +42,6 @@ public class Weapon : Colliderable
         animator = GetComponent<Animator>();
         if (rageState != null)
             rageState.SetActive(false);
-
         InitializePlayerComponents();
     }
 
@@ -56,10 +59,11 @@ public class Weapon : Colliderable
     {
         InitializePlayerComponents();
 
-        // base.Update() вызываем ВСЕГДА — коллизии должны работать независимо
-        base.Update();
+        // base.Update() только для не-оружийных Colliderable (EnemyHitBox, Portal и т.д.)
+        // Для оружия коллизии активны только во время свинга
+        if (_isSwinging)
+            base.Update();
 
-        // Дальше только логика оружия — только для локального живого игрока
         if (GameManager.instance == null || player == null || !player.isAlive)
             return;
 
@@ -92,17 +96,38 @@ public class Weapon : Colliderable
         }
     }
 
+    private void Swing()
+    {
+        if (animator != null)
+            animator.SetTrigger("Swing");
+        StartCoroutine(SwingWindow());
+    }
+
+    // Окно урона — 0.3 секунды во время свинга
+    private IEnumerator SwingWindow()
+    {
+        _isSwinging = true;
+        yield return new WaitForSeconds(0.3f);
+        _isSwinging = false;
+    }
+
     protected override void OnCollide(Collider2D coll)
     {
+        if (!_isSwinging) return;
         if (playerView != null && !playerView.IsMine) return;
 
-        // Пропускаем самого игрока — владельца оружия
         if (coll.GetComponent<Player>() != null ||
             coll.GetComponentInParent<Player>() != null) return;
 
-        // Бьём только объекты с компонентом Fighter (враги, боссы)
+        // Ищем Fighter на объекте или родителе
         Fighter fighter = coll.GetComponent<Fighter>();
-        if (fighter == null) fighter = coll.GetComponentInParent<Fighter>();
+        GameObject targetRoot = coll.gameObject;
+        if (fighter == null)
+        {
+            fighter = coll.GetComponentInParent<Fighter>();
+            if (fighter != null)
+                targetRoot = fighter.gameObject;
+        }
         if (fighter == null) return;
 
         Damag dmg = new Damag
@@ -112,8 +137,8 @@ public class Weapon : Colliderable
             pushForce = pushForce[weaponLevel]
         };
 
-        PhotonView targetPv = coll.GetComponent<PhotonView>();
-        if (targetPv == null) targetPv = coll.GetComponentInParent<PhotonView>();
+        // Берём PhotonView с корневого объекта где находится Fighter и RPC метод
+        PhotonView targetPv = targetRoot.GetComponent<PhotonView>();
 
         if (targetPv != null && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
         {
@@ -122,14 +147,8 @@ public class Weapon : Colliderable
         }
         else
         {
-            coll.SendMessage("ReceiveDamage", dmg, SendMessageOptions.DontRequireReceiver);
+            fighter.SendMessage("ReceiveDamage", dmg, SendMessageOptions.DontRequireReceiver);
         }
-    }
-
-    private void Swing()
-    {
-        if (animator != null)
-            animator.SetTrigger("Swing");
     }
 
     private void CreateFlamingSword()
@@ -144,9 +163,7 @@ public class Weapon : Colliderable
         if (SpriteRenderer != null && GameManager.instance != null &&
             GameManager.instance.weaponSprites != null &&
             weaponLevel < GameManager.instance.weaponSprites.Count)
-        {
             SpriteRenderer.sprite = GameManager.instance.weaponSprites[weaponLevel];
-        }
 
         if (playerView != null && playerView.IsMine)
             playerView.RPC("RPC_SyncWeaponLevel", RpcTarget.OthersBuffered, weaponLevel);
@@ -158,9 +175,7 @@ public class Weapon : Colliderable
         if (SpriteRenderer != null && GameManager.instance != null &&
             GameManager.instance.weaponSprites != null &&
             level < GameManager.instance.weaponSprites.Count)
-        {
             SpriteRenderer.sprite = GameManager.instance.weaponSprites[weaponLevel];
-        }
 
         if (playerView != null && playerView.IsMine)
             playerView.RPC("RPC_SyncWeaponLevel", RpcTarget.OthersBuffered, weaponLevel);
