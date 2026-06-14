@@ -1,11 +1,10 @@
-﻿// Colliderable.cs — добавляем защиту от повторного вызова
+﻿// Colliderable.cs
 using UnityEngine;
 
 public class Colliderable : MonoBehaviour
 {
     private BoxCollider2D boxCollider;
     private Collider2D[] hits = new Collider2D[10];
-    // Вызываем OnCollide только при ВХОДЕ, не каждый кадр
     private Collider2D[] previousHits = new Collider2D[10];
 
     protected virtual void Start()
@@ -28,17 +27,16 @@ public class Colliderable : MonoBehaviour
         for (int i = 0; i < count; i++)
         {
             if (hits[i] == null) continue;
+            // Пропускаем себя и всех родителей/детей
             if (hits[i].gameObject == gameObject) continue;
+            if (hits[i].transform.IsChildOf(transform)) continue;
+            if (transform.IsChildOf(hits[i].transform)) continue;
 
-            // Вызываем только если этого объекта не было в прошлом кадре
             if (!WasInPreviousHits(hits[i]))
                 OnCollide(hits[i]);
         }
 
-        // Сохраняем текущие хиты как предыдущие
         System.Array.Copy(hits, previousHits, hits.Length);
-
-        // Очищаем hits для следующего кадра
         System.Array.Clear(hits, 0, hits.Length);
     }
 

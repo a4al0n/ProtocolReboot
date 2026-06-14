@@ -14,6 +14,8 @@ public class Launcher : MonoBehaviourPunCallbacks
     {
         instance = this;
         PhotonNetwork.AutomaticallySyncScene = true;
+        // Версия игры — при изменении кода меняй эту строку
+        PhotonNetwork.GameVersion = "1.0";
     }
 
     private void Start()
