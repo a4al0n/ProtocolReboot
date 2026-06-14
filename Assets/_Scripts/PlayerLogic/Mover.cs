@@ -43,5 +43,7 @@ public abstract class Mover : Fighter
 
         hit = Physics2D.BoxCast(transform.position, BoxCollider.size, 0, new Vector2(moveDelta.x, 0), Mathf.Abs(moveDelta.x * Time.deltaTime), LayerMask.GetMask("Actor", "Blocking"));
         if (hit.collider == null) transform.Translate(moveDelta.x * Time.deltaTime, 0, 0);
+
+        Physics2D.SyncTransforms();
     }
 }
