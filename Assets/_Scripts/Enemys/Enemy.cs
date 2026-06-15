@@ -185,15 +185,6 @@ public class Enemy : Mover
 
     protected override void Death()
     {
-        if (!PhotonNetwork.IsConnected || !PhotonNetwork.InRoom || PhotonNetwork.IsMasterClient)
-        {
-            if (GameManager.instance != null)
-            {
-                GameManager.instance.GrantXP(xpValue);
-                GameManager.instance.ShowText("+" + xpValue + " xp", 30, Color.magenta, transform.position, Vector3.up * 40, 1.0f);
-            }
-        }
-
         if (canRespawn)
         {
             isAlive = false;
@@ -206,20 +197,57 @@ public class Enemy : Mover
             var sr = GetComponent<SpriteRenderer>();
             if (sr != null) sr.enabled = false;
 
-            StartCoroutine("WaitingForRespawn");
+            // Синхронизируем смерть врага для всех клиентов
+            PhotonView myView = GetComponent<PhotonView>();
+            if (myView != null && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
+                myView.RPC("RPC_EnemyDeath", RpcTarget.All);
+            else
+                StartCoroutine("WaitingForRespawn");
         }
         else
         {
+            // Выдаём XP всем через RPC
             PhotonView myView = GetComponent<PhotonView>();
             if (myView != null && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
             {
-                if (PhotonNetwork.IsMasterClient)
-                    PhotonNetwork.Destroy(gameObject);
+                myView.RPC("RPC_GrantXPAndDestroy", RpcTarget.All);
             }
             else
             {
+                GrantXPLocally();
                 Destroy(gameObject);
             }
+        }
+    }
+
+    [PunRPC]
+    private void RPC_EnemyDeath()
+    {
+        // XP выдаём всем игрокам
+        GrantXPLocally();
+        StartCoroutine("WaitingForRespawn");
+    }
+
+    [PunRPC]
+    private void RPC_GrantXPAndDestroy()
+    {
+        GrantXPLocally();
+        // Уничтожаем только на MasterClient
+        if (PhotonNetwork.IsMasterClient)
+        {
+            PhotonView myView = GetComponent<PhotonView>();
+            if (myView != null)
+                PhotonNetwork.Destroy(gameObject);
+        }
+    }
+
+    private void GrantXPLocally()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.GrantXP(xpValue);
+            GameManager.instance.ShowText("+" + xpValue + " xp", 30, Color.magenta,
+                transform.position, Vector3.up * 40, 1.0f);
         }
     }
 
