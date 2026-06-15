@@ -2853,7 +2853,7 @@ PrefabInstance:
     - target: {fileID: 6275248204159803963, guid: 7ab301500a5426e48843468b0d372122,
         type: 3}
       propertyPath: healingAmount
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6275248204159803964, guid: 7ab301500a5426e48843468b0d372122,
         type: 3}
@@ -3090,7 +3090,7 @@ PrefabInstance:
     - target: {fileID: 6275248204159803963, guid: 7ab301500a5426e48843468b0d372122,
         type: 3}
       propertyPath: healingAmount
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 6275248204159803964, guid: 7ab301500a5426e48843468b0d372122,
         type: 3}

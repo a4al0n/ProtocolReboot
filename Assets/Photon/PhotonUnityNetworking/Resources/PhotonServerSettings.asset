@@ -46,6 +46,8 @@ MonoBehaviour:
   - RequestSceneChangeRPC
   - RPC_NetworkTakeDamage
   - RPC_SyncWeaponLevel
+  - RPC_EnemyDeath
+  - RPC_GrantXPAndDestroy
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
