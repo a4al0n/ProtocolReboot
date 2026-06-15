@@ -19231,20 +19231,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a047178d20b5bcf4e9f1ad5fa15c83f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
   messages:
   - Only love can defeat chaos.
   showTime: 3
@@ -20555,7 +20541,7 @@ Transform:
   m_GameObject: {fileID: 814229761}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.777, y: -0.662, z: 0}
+  m_LocalPosition: {x: -9.545, y: -0.788, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -23510,20 +23496,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a047178d20b5bcf4e9f1ad5fa15c83f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
   messages:
   - I am not Angel.
   showTime: 3
@@ -24809,20 +24781,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a047178d20b5bcf4e9f1ad5fa15c83f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
   messages:
   - I almost caught Jonhy Goldenhand..
   showTime: 3
@@ -25100,6 +25058,74 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1391537590}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1399870786
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1741431502767775589, guid: f42fc9336658afb4f918820a10b89249,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.645
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741431502767775589, guid: f42fc9336658afb4f918820a10b89249,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.748
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741431502767775589, guid: f42fc9336658afb4f918820a10b89249,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741431502767775589, guid: f42fc9336658afb4f918820a10b89249,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741431502767775589, guid: f42fc9336658afb4f918820a10b89249,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741431502767775589, guid: f42fc9336658afb4f918820a10b89249,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741431502767775589, guid: f42fc9336658afb4f918820a10b89249,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741431502767775589, guid: f42fc9336658afb4f918820a10b89249,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741431502767775589, guid: f42fc9336658afb4f918820a10b89249,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1741431502767775589, guid: f42fc9336658afb4f918820a10b89249,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3446360883890522843, guid: f42fc9336658afb4f918820a10b89249,
+        type: 3}
+      propertyPath: m_Name
+      value: NetworkLauncher
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f42fc9336658afb4f918820a10b89249, type: 3}
 --- !u!1001 &1401865600
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27116,20 +27142,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a047178d20b5bcf4e9f1ad5fa15c83f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
   messages:
   - Is the game over?
   - I'm just come from Isla Nublar..
@@ -27362,20 +27374,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a047178d20b5bcf4e9f1ad5fa15c83f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
   messages:
   - praise the metall.
   showTime: 3
@@ -27951,20 +27949,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a047178d20b5bcf4e9f1ad5fa15c83f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
   messages:
   - "Have you seen my gun\uFF1F"
   showTime: 3
@@ -74580,20 +74564,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a047178d20b5bcf4e9f1ad5fa15c83f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
   messages:
   - Is over,
   - Thanks for playing
@@ -74746,3 +74716,4 @@ SceneRoots:
   - {fileID: 814229762}
   - {fileID: 1127337125}
   - {fileID: 1357665952}
+  - {fileID: 1399870786}
