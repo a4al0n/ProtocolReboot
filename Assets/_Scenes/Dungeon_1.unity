@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9d67b21dbf8b459281f0aa0ef109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 2
   pushForce: 1.5
 --- !u!61 &5058595
 BoxCollider2D:
@@ -348,7 +348,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9d67b21dbf8b459281f0aa0ef109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 2
   pushForce: 1
 --- !u!61 &14804998
 BoxCollider2D:
@@ -551,7 +551,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1226,7 +1226,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
@@ -1761,7 +1761,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1845,7 +1845,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
@@ -2229,7 +2229,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2453,7 +2453,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2662,7 +2662,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3344,7 +3344,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3580,7 +3580,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3664,7 +3664,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
@@ -82894,7 +82894,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -83077,7 +83077,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
@@ -83251,7 +83251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9d67b21dbf8b459281f0aa0ef109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 2
   pushForce: 1
 --- !u!61 &1005481682
 BoxCollider2D:
@@ -205960,7 +205960,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9d67b21dbf8b459281f0aa0ef109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 4
   pushForce: 4
 --- !u!61 &1323780080
 BoxCollider2D:
@@ -206079,7 +206079,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -206967,7 +206967,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9d67b21dbf8b459281f0aa0ef109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 2
   pushForce: 2
 --- !u!61 &1475084018
 BoxCollider2D:
@@ -207516,7 +207516,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -207600,7 +207600,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -207859,7 +207859,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -208034,7 +208034,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -208695,7 +208695,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -209439,7 +209439,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -210110,7 +210110,7 @@ PrefabInstance:
     - target: {fileID: 4358568671775893224, guid: 8bd3dfd809fc2d14d9f43f3d217ed0e4,
         type: 3}
       propertyPath: damage
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -210494,7 +210494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9d67b21dbf8b459281f0aa0ef109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 2
   pushForce: 2
 --- !u!4 &515964822180223282
 Transform:
@@ -210929,7 +210929,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9d67b21dbf8b459281f0aa0ef109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 2
   pushForce: 2
 --- !u!61 &515964823469878719
 BoxCollider2D:
@@ -211153,7 +211153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9d67b21dbf8b459281f0aa0ef109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 3
   pushForce: 1
 --- !u!61 &729015732022772566
 BoxCollider2D:
@@ -211647,7 +211647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9d67b21dbf8b459281f0aa0ef109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 2
   pushForce: 1
 --- !u!1 &1237160850228326992
 GameObject:
@@ -213049,7 +213049,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9d67b21dbf8b459281f0aa0ef109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 2
   pushForce: 1.5
 --- !u!61 &2533485388422702149
 BoxCollider2D:
@@ -214353,7 +214353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d9d67b21dbf8b459281f0aa0ef109e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 4
+  damage: 1
   pushForce: 2
 --- !u!4 &6205523026831486598
 Transform:
