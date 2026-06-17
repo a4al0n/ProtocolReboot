@@ -47,7 +47,7 @@ public class Enemy : Mover
     protected Transform FindClosestPlayer()
     {
         // Ищем по компоненту Player вместо тега
-        Player[] playerComponents = FindObjectsOfType<Player>();
+        Player[] playerComponents = FindObjectsByType<Player>(FindObjectsSortMode.None);
         Transform closest = null;
         float minDistance = float.MaxValue;
 
@@ -171,18 +171,7 @@ public class Enemy : Mover
             enemyStateSprite.enabled = false;
     }
 
-    [PunRPC]
-    public void RPC_NetworkTakeDamage(int damageAmount, Vector3 origin, float pushForce)
-    {
-        Damag dmg = new Damag
-        {
-            damageAmount = damageAmount,
-            origin = origin,
-            pushForce = pushForce
-        };
-        ReceiveDamage(dmg);
-    }
-
+    // В Enemy.cs замени Death()
     protected override void Death()
     {
         if (canRespawn)
@@ -197,7 +186,6 @@ public class Enemy : Mover
             var sr = GetComponent<SpriteRenderer>();
             if (sr != null) sr.enabled = false;
 
-            // Синхронизируем смерть врага для всех клиентов
             PhotonView myView = GetComponent<PhotonView>();
             if (myView != null && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
                 myView.RPC("RPC_EnemyDeath", RpcTarget.All);
@@ -206,12 +194,9 @@ public class Enemy : Mover
         }
         else
         {
-            // Выдаём XP всем через RPC
             PhotonView myView = GetComponent<PhotonView>();
             if (myView != null && PhotonNetwork.IsConnected && PhotonNetwork.InRoom)
-            {
                 myView.RPC("RPC_GrantXPAndDestroy", RpcTarget.All);
-            }
             else
             {
                 GrantXPLocally();
@@ -223,7 +208,16 @@ public class Enemy : Mover
     [PunRPC]
     private void RPC_EnemyDeath()
     {
-        // XP выдаём всем игрокам
+        isAlive = false;
+        if (hitBox != null) hitBox.enabled = false;
+        CloseStateSprite();
+
+        var col = GetComponent<BoxCollider2D>();
+        if (col != null) col.enabled = false;
+
+        var sr = GetComponent<SpriteRenderer>();
+        if (sr != null) sr.enabled = false;
+
         GrantXPLocally();
         StartCoroutine("WaitingForRespawn");
     }
@@ -232,13 +226,19 @@ public class Enemy : Mover
     private void RPC_GrantXPAndDestroy()
     {
         GrantXPLocally();
-        // Уничтожаем только на MasterClient
-        if (PhotonNetwork.IsMasterClient)
+        gameObject.SetActive(false); // скрываем у всех вместо Destroy
+    }
+
+    [PunRPC]
+    public void RPC_NetworkTakeDamage(int damageAmount, Vector3 origin, float pushForce)
+    {
+        Damag dmg = new Damag
         {
-            PhotonView myView = GetComponent<PhotonView>();
-            if (myView != null)
-                PhotonNetwork.Destroy(gameObject);
-        }
+            damageAmount = damageAmount,
+            origin = origin,
+            pushForce = pushForce
+        };
+        ReceiveDamage(dmg);
     }
 
     private void GrantXPLocally()
@@ -265,6 +265,6 @@ public class Enemy : Mover
 
         OpenStateSprite();
         hitPoint = maxHitPoint;
-        gameObject.transform.position = startingPosition;
+        transform.position = startingPosition;
     }
 }

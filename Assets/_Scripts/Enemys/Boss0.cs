@@ -29,21 +29,24 @@ public class Boss0 : Enemy
     {
         base.Update();
 
-        for(int i = 0; i < fireballs.Length; i++)
+        for (int i = 0; i < fireballs.Length; i++)
         {
-            fireballs[i].position = transform.position + new Vector3(-Mathf.Cos(Time.time * fireballSpeed[i]) * fireballDistance, Mathf.Sin(Time.time * fireballSpeed[i]) * fireballDistance, 0);
+            fireballs[i].position = transform.position + new Vector3(
+                -Mathf.Cos(Time.time * fireballSpeed[i]) * fireballDistance,
+                Mathf.Sin(Time.time * fireballSpeed[i]) * fireballDistance, 0);
         }
 
         if (((float)hitPoint / (float)maxHitPoint) <= 0.2f)
         {
             fireballSpeed[0] = 4f;
             fireballSpeed[1] = -4f;
-
             speedMultiple = 1f;
             triggerLength = startTriggerLength * 2;
             chaseLength = startChaseLength * 2;
-
             spriteRenderer.color = Color.red;
+
+            // Дебаг — показываем HP каждый кадр
+            Debug.Log($"[Boss0] HP: {hitPoint}/{maxHitPoint}, ImmuneTime: {ImmuneTime}");
         }
     }
 }
