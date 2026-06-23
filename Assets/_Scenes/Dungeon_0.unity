@@ -242,8 +242,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e27f12803366749afbae83115db55e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadingPanel: {fileID: 0}
-  progressSlider: {fileID: 0}
+  loadingPanel: {fileID: 1546756200}
+  progressSlider: {fileID: 517147888}
+  loreTexts: []
+  loreTextUI: {fileID: 0}
+  pressAnyKeyText: {fileID: 0}
+  blinkSpeed: 1.5
   sliderSpeed: 2
 --- !u!1 &34082332
 GameObject:
@@ -17105,7 +17109,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 5
@@ -20767,20 +20771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a047178d20b5bcf4e9f1ad5fa15c83f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filter:
-    useTriggers: 0
-    useLayerMask: 0
-    useDepth: 0
-    useOutsideDepth: 0
-    useNormalAngle: 0
-    useOutsideNormalAngle: 0
-    layerMask:
-      serializedVersion: 2
-      m_Bits: 0
-    minDepth: 0
-    maxDepth: 0
-    minNormalAngle: 0
-    maxNormalAngle: 0
   messages:
   - "\u0412\u0430\u0448\u0430 \u043C\u0438\u0441\u0441\u0438\u044F \u043D\u0430\u0447\u0438\u043D\u0430\u0435\u0442\u0441\u044F
     \u0441\u0435\u0439\u0447\u0430\u0441."

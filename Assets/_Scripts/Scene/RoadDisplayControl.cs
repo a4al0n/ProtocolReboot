@@ -16,16 +16,15 @@ public class RoadDisplayControl : MonoBehaviourPun
 
     private void Update()
     {
-        if (enemys == null || !enemys || trans == null || !trans) return;
+        if (enemys == null || trans == null) return;
         if (_roadOpened) return;
 
         if (PhotonNetwork.IsMasterClient)
         {
-            num = enemys.transform.childCount;
+            num = CountAliveEnemies();
 
             if (num == 0)
             {
-                // Проверяем есть ли PhotonView перед вызовом RPC
                 if (photonView != null)
                 {
                     _roadOpened = true;
@@ -33,7 +32,6 @@ public class RoadDisplayControl : MonoBehaviourPun
                 }
                 else
                 {
-                    // Fallback без сети
                     _roadOpened = true;
                     DisplayRoadRPC();
                 }
@@ -41,10 +39,30 @@ public class RoadDisplayControl : MonoBehaviourPun
         }
     }
 
+    private int CountAliveEnemies()
+    {
+        int aliveCount = 0;
+
+        foreach (Transform child in enemys.transform)
+        {
+            Enemy e = child.GetComponent<Enemy>();
+            if (e == null) continue;
+
+            if (!e.gameObject.activeInHierarchy) continue;
+
+            SpriteRenderer sr = e.GetComponent<SpriteRenderer>();
+            if (sr != null && !sr.enabled) continue;
+
+            aliveCount++;
+        }
+
+        return aliveCount;
+    }
+
     [PunRPC]
     public void DisplayRoadRPC()
     {
-        if (trans != null && trans)
+        if (trans != null)
         {
             trans.gameObject.SetActive(true);
             Debug.Log("RoadDisplayControl: All enemies defeated. Road opened!");

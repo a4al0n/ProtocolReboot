@@ -223,7 +223,7 @@ public class Enemy : Mover
     }
 
     [PunRPC]
-    private void RPC_GrantXPAndDestroy()
+    public void RPC_GrantXPAndDestroy()
     {
         GrantXPLocally();
         gameObject.SetActive(false); // скрываем у всех вместо Destroy

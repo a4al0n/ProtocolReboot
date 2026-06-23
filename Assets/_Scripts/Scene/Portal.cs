@@ -114,6 +114,8 @@ public class Portal : MonoBehaviour, IOnEventCallback
 
     private void ChangeSceneTo(string targetScene)
     {
+        Debug.Log("ChangeSceneTo: SceneTranslate.Instance = " + (SceneTranslate.Instance != null ? "EXISTS" : "NULL"));
+
         if (SceneTranslate.Instance != null)
         {
             SceneTranslate.Instance.ChangeToScene(targetScene);
